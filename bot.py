@@ -18,29 +18,34 @@ dp = Dispatcher()
 # --- Creating Buttons ---
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="📚 Admission Details")],
+        [KeyboardButton(text="📚 School Policies")],
         [KeyboardButton(text="📝 Exam Schedule")],
-        [KeyboardButton(text="📅 School Events")],
-        [KeyboardButton(text="ℹ️ Contact Us")]
+        [KeyboardButton(text="📅 School Timings")],
+        [KeyboardButton(text="ℹ️ Weekly plans")],
+        [KeyboardButton(text="📚 Link for Medical Excuses")],
+        [KeyboardButton(text="📚 Technical support contacts")],
     ],
     resize_keyboard=True
 )
 
 # Inline buttons with links
 inline_links = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Admission Info", url="https://your-school-website.com/admissions")],
+    [InlineKeyboardButton(text="School Policies", url="https://your-school-website.com/policies")],
     [InlineKeyboardButton(text="Exam Schedule", url="https://your-school-website.com/exams")],
-    [InlineKeyboardButton(text="School Events", url="https://your-school-website.com/events")],
-    [InlineKeyboardButton(text="Contact Us", url="https://your-school-website.com/contact")]
+    [InlineKeyboardButton(text="School Timings", url="https://your-school-website.com/timings")],
+    [InlineKeyboardButton(text="Weekly Plans", url="https://your-school-website.com/weekly plan")],
+     [InlineKeyboardButton(text="Link for Medical Excuses", url="https://your-school-website.com/medicalexcuses")]
+    
+    
 ])
 
 # --- Handling Start Command ---
 @dp.message(Command("start"))
 async def send_welcome(message: types.Message):
-    await message.answer("Welcome to the School Support Bot! 🎓\nPlease choose an option below:", reply_markup=main_menu)
+    await message.answer("Welcome to Al Danat School Parent's Support Bot! 🎓\nPlease choose an option below:", reply_markup=main_menu)
 
 # --- Handling Button Clicks ---
-@dp.message(F.text.in_(["📚 Admission Details", "📝 Exam Schedule", "📅 School Events", "ℹ️ Contact Us"]))
+@dp.message(F.text.in_(["📚 School Policies", "📝 Exam Schedule", "📅 School Timings", "ℹ️ Weekly plans", "📚 Link for Medical Excuses", "📚 Technical support contacts"]))
 async def send_info(message: types.Message):
     await message.answer("Click the relevant link below for details:", reply_markup=inline_links)
 
