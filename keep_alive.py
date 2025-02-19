@@ -13,5 +13,3 @@ def run():
 def keep_alive():
     t = Thread(target=run)
     t.start()
-# Call keep_alive() to start the web server
-keep_alive()
